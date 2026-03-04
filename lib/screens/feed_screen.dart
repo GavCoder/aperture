@@ -48,42 +48,41 @@ class FeedScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Container(
-              height: 500,
+              height: 550,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.gradientMediumPurple,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 100,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.gradientMediumPurple,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 20,
-            child: FloatingActionButton(
-              elevation: 10,
-              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              onPressed: () {},
-              backgroundColor: AppColors.gradientMediumPurple,
-              child: const Icon(
-                Icons.add_rounded,
-                color: Colors.white,
-                size: 30,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Container(
+              height: 130,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: AppColors.gradientMediumPurple,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(30),
+                ),
               ),
+            ),
+          ),
+          FloatingActionButton(
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            onPressed: () {},
+            backgroundColor: AppColors.gradientMediumPurple,
+            
+            child: const Icon(
+              Icons.add_rounded,
+              color: Colors.white,
+              size: 30,
             ),
           ),
           const SizedBox(
