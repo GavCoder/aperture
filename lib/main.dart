@@ -1,3 +1,4 @@
+import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/screens/feed_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp( 
       debugShowCheckedModeBanner: false,
+      // initialRoute: '/',
+      // onGenerateRoute: AppRouter.generateRoute,
       home: FeedScreen(),
     );
   }
