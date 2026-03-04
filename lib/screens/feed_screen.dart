@@ -7,52 +7,71 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 10,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(10),
-          ),
-        ),
-        backgroundColor: AppColors.gradientPurple,
-        title: const Text(
-          'Welcome, Gavin',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: false,
-        actions: const [
-          Icon(
-            Icons.person_2_rounded,
-            color: Colors.white,
-            size: 20,
-          ),
-          SizedBox(width: 20),
-        ],
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 400,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: AppColors.gradientMediumPurple,
-                    borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.only(top: 40, left: 18, right: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text.rich(
+                  TextSpan(
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.gradientMediumPurple,
+                    ),
+                    children: [
+                      TextSpan(
+                          text: 'Welcome, ',
+                          style: TextStyle(fontWeight: FontWeight.normal)),
+                      TextSpan(
+                        text: 'Gavin',
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.person,
+                    color: AppColors.gradientMediumPurple,
+                    size: 28,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Container(
+              height: 500,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.gradientMediumPurple,
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
-          Center(
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.gradientMediumPurple,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 20,
             child: FloatingActionButton(
               elevation: 10,
               shape: RoundedRectangleBorder(
