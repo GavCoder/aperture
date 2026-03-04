@@ -1,4 +1,5 @@
 import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/screens/feed_screen.dart';
 import 'package:aperture/screens/register_screen.dart';
 import 'package:aperture/services/validations.dart';
@@ -161,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/register');
+                Navigator.pushNamed(context, AppRouter.registerRoute);
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),

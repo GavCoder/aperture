@@ -12,6 +12,7 @@ class ResponsiveManager {
   ///
   /// This widget automatically detects device type and renders the correct
   /// version of a screen (mobile, tablet, or desktop)
+  /// TODO: Implement actual responsive screen versions
   static Widget routeScreen({
     required BuildContext context,
     required String screenName,
