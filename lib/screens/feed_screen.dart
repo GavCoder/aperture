@@ -18,7 +18,7 @@ class FeedScreen extends StatelessWidget {
         title: const Text(
           'Welcome, Gavin',
           style: TextStyle(
-            fontSize: 10,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -63,7 +63,7 @@ class FeedScreen extends StatelessWidget {
               child: const Icon(
                 Icons.add_rounded,
                 color: Colors.white,
-                size: 20,
+                size: 30,
               ),
             ),
           ),

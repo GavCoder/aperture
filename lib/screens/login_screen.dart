@@ -161,12 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/register');
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
