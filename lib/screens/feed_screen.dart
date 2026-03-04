@@ -1,4 +1,5 @@
 import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/route_manager/app_router.dart';
 import 'package:flutter/material.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -24,13 +25,14 @@ class FeedScreen extends StatelessWidget {
           ),
         ),
         centerTitle: false,
-        actions: const [
-          Icon(
-            Icons.person_2_rounded,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person_rounded,
+            size: 20,),
             color: Colors.white,
-            size: 20,
+            onPressed:() => Navigator.pushNamed(context, AppRouter.profileRoute),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
         ],
       ),
       body: Column(
