@@ -24,11 +24,12 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Center(
               child: Stack(
+                alignment: Alignment.bottomRight,
                 children: [
                   CircleAvatar(
                     radius: 100,
@@ -43,12 +44,12 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                alignment: Alignment.bottomRight,
               ),
             ),
             const SizedBox(height: 25),
             Center(
               child: Stack(
+                alignment: Alignment.bottomRight,
                 children: [
                   Container(
                     height: 100,
@@ -81,7 +82,6 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                alignment: Alignment.bottomRight,
               ),
             ),
           ],

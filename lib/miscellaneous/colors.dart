@@ -22,6 +22,11 @@ class AppColors {
     gradientOrange,
   ];
 
+  static List<Color> imageOverlay = [ // doesn't work for some reason.
+    Colors.transparent,
+    Colors.black.withValues(alpha: 0.8),    
+  ];
+
   // Icon Colors
   static const Color iconWhite = Colors.white;
   static const Color iconDarkGrey = Color(0xFF1F2937);
@@ -32,7 +37,8 @@ class AppColors {
 
   // Text Colors
   static const Color textWhite = Colors.white;
-  static const Color textDarkGrey = Color(0xFF1F2937);
+  static const Color textDarkGrey = Color.fromARGB(255, 41, 41, 41);
+  static const Color textLightGrey = Color(0xFF6B7280);
 
   // Transparent/Overlay Colors
   static const Color overlayDark = Color(0xFF000000);
@@ -40,11 +46,11 @@ class AppColors {
 
   // Helper function to get white with opacity
   static Color whiteWithOpacity(double opacity) =>
-      Colors.white.withOpacity(opacity);
+      Colors.white.withValues(alpha: opacity);
 
   // Helper function to get black with opacity
   static Color blackWithOpacity(double opacity) =>
-      Colors.black.withOpacity(opacity);
+      Colors.black.withValues(alpha: opacity);
 
   // Button and Input Colors
   static Color inputFillColor = whiteWithOpacity(0.15);
