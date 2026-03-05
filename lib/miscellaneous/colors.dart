@@ -11,6 +11,9 @@ class AppColors {
   static const Color gradientRed = Color(0xFFA85C5C);
   static const Color gradientOrange = Color(0xFFD45C4C);
 
+  // Scaffold Background Color
+  static const Color scaffoldBackground = Color(0xFF121212);
+
   // Gradient List for reuse
   static const List<Color> appGradient = [
     gradientPurple,
