@@ -1,7 +1,6 @@
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/screens/feed_screen.dart';
-import 'package:aperture/screens/register_screen.dart';
 import 'package:aperture/services/validations.dart';
 import 'package:flutter/material.dart';
 
@@ -218,13 +217,13 @@ class _LoginScreenState extends State<LoginScreen> {
             suffixIcon: suffixIcon,
             filled: true,
             fillColor: errorText != null
-                ? Colors.red.withOpacity(0.1)
+                ? Colors.red.withValues(alpha: 0.1)
                 : AppColors.inputFillColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
                 color: errorText != null
-                    ? Colors.red.withOpacity(0.5)
+                    ? Colors.red.withValues(alpha: 0.5)
                     : BorderSide.none.color,
               ),
             ),
