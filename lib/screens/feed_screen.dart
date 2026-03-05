@@ -20,42 +20,54 @@ class FeedScreen extends StatelessWidget {
               width: 320,
             ),
           ),
+          Positioned(
+            bottom: -200,
+            right: -50,
+            child: SvgPicture.asset(
+              'assets/blobs/blob2.svg',
+              width: 320,
+            ),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textWhite,
-                      ),
-                      children: [
-                        TextSpan(
-                            text: 'Welcome, ',
-                            style: TextStyle(fontWeight: FontWeight.normal)),
-                        TextSpan(
-                          text: 'Gavin',
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          ),
+              Padding(
+                padding: const EdgeInsets.only(top: 40, left: 18, right: 18,),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text.rich(
+                      TextSpan(                        
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textWhite,
                         ),
-                      ],
+                        children: [
+                          TextSpan(
+                              text: 'Welcome, ',
+                              style:
+                                  TextStyle(fontWeight: FontWeight.normal)),
+                          TextSpan(
+                            text: 'Gavin',
+                            style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.person,
-                      color: AppColors.iconWhite,
-                      size: 28,
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.person,
+                        color: AppColors.iconWhite,
+                        size: 28,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Expanded(
                 child: ListView.builder(
@@ -103,6 +115,7 @@ class FeedScreen extends StatelessWidget {
               ),
             ],
           ),
+          
         ],
       ),
     );
