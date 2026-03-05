@@ -12,7 +12,7 @@ class AppColors {
   static const Color gradientOrange = Color(0xFFD45C4C);
 
   // Scaffold Background Color
-  static const Color scaffoldBackground = Color(0xFF121212);
+  static const Color scaffoldBackground = Color.fromARGB(255, 0, 0, 0);
 
   // Gradient List for reuse
   static const List<Color> appGradient = [
