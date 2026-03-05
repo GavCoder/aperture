@@ -1,5 +1,4 @@
 import 'package:aperture/route_manager/app_router.dart';
-import 'package:aperture/screens/feed_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
