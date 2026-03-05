@@ -22,6 +22,10 @@ class AppColors {
     gradientOrange,
   ];
 
+  // Icon Colors
+  static const Color iconWhite = Colors.white;
+  static const Color iconDarkGrey = Color(0xFF1F2937);
+
   // Logo Gradient Colors
   static const Color logoPurple = Color(0xFFB794F6);
   static const Color logoBlue = Color(0xFF60A5FA);
