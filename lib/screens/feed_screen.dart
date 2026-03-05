@@ -1,5 +1,6 @@
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -10,7 +11,6 @@ class FeedScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackground,
       body: Stack(
         children: [
-          // Positioned(child: SvgPicture),
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -98,6 +98,15 @@ class FeedScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          
+          Positioned(
+            top: 50,
+            right: 50,
+            child: SvgPicture.asset(
+              'assets/blobs/blob1.svg',
+              width: 200,
             ),
           ),
         ],
