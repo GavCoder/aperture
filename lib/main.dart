@@ -1,4 +1,6 @@
 import 'package:aperture/route_manager/app_router.dart';
+import 'package:aperture/screens/feed_screen.dart';
+import 'package:aperture/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +13,11 @@ class MyApp extends StatelessWidget {
   //TODO: Add ThemeData to the app, and make it look nice
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp( 
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      onGenerateRoute: AppRouter.generateRoute,
-      // home: FeedScreen(),
+      // initialRoute: '/',
+      // onGenerateRoute: AppRouter.generateRoute,
+      home: ProfileScreen(),
     );
   }
 }

@@ -217,13 +217,13 @@ class _LoginScreenState extends State<LoginScreen> {
             suffixIcon: suffixIcon,
             filled: true,
             fillColor: errorText != null
-                ? Colors.red.withOpacity(0.1)
+                ? Colors.red.withValues(alpha: 0.1)
                 : AppColors.inputFillColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
                 color: errorText != null
-                    ? Colors.red.withOpacity(0.5)
+                    ? Colors.red.withValues(alpha: 0.5)
                     : BorderSide.none.color,
               ),
             ),
