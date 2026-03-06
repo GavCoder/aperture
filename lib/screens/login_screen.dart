@@ -1,104 +1,86 @@
 import 'dart:ui';
 
 import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
-import 'package:aperture/screens/feed_screen.dart';
-import 'package:aperture/services/validations.dart';
 import 'package:aperture/widgets/build_background.dart';
 import 'package:aperture/widgets/build_forgot_button.dart';
 import 'package:aperture/widgets/build_input_field.dart';
+import 'package:aperture/widgets/build_login_button.dart';
 import 'package:aperture/widgets/build_logo_section.dart';
 import 'package:aperture/widgets/build_tab_buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<LoginFormProvider>(
+      create: (_) => LoginFormProvider(),
+      child: const _LoginScreenView(),
+    );
+  }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+class _LoginScreenView extends StatefulWidget {
+  const _LoginScreenView();
 
-  late FocusNode emailFocusNode;
-  late FocusNode passwordFocusNode;
+  @override
+  State<_LoginScreenView> createState() => _LoginScreenViewState();
+}
 
-  bool obscurePassword = true;
-
-  String? emailError;
-  String? passwordError;
+class _LoginScreenViewState extends State<_LoginScreenView> {
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final FocusNode emailFocusNode;
+  late final FocusNode passwordFocusNode;
 
   @override
   void initState() {
     super.initState();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-
     emailFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
 
-    // Add listeners for real-time validation
     emailController.addListener(_validateEmail);
     passwordController.addListener(_validatePassword);
   }
 
   @override
   void dispose() {
+    emailController.removeListener(_validateEmail);
+    passwordController.removeListener(_validatePassword);
     emailController.dispose();
     passwordController.dispose();
-
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
-
     super.dispose();
   }
 
-  /// Validates email in real-time
   void _validateEmail() {
-    setState(() {
-      emailError = ValidationService.validateEmail(emailController.text);
-    });
+    context.read<LoginFormProvider>().validateEmail(emailController.text);
   }
 
-  /// Validates password in real-time
   void _validatePassword() {
-    setState(() {
-      passwordError =
-          ValidationService.validatePassword(passwordController.text);
-    });
+    context.read<LoginFormProvider>().validatePassword(passwordController.text);
   }
 
-  /// Validates all fields and returns true if all are valid
-  bool validateAllFields() {
-    final String emailErrorMsg =
-        ValidationService.validateEmail(emailController.text) ?? '';
-    final String passwordErrorMsg =
-        ValidationService.validatePassword(passwordController.text) ?? '';
+  void _onLoginPressed() {
+    final loginProvider = context.read<LoginFormProvider>();
+    final isValid = loginProvider.validateAllFields(
+      email: emailController.text,
+      password: passwordController.text,
+    );
 
-    setState(() {
-      emailError = emailErrorMsg.isNotEmpty ? emailErrorMsg : null;
-      passwordError = passwordErrorMsg.isNotEmpty ? passwordErrorMsg : null;
-    });
-
-    return emailErrorMsg.isEmpty && passwordErrorMsg.isEmpty;
+    if (isValid) {
+      Navigator.pushNamed(context, AppRouter.feedRoute);
+    }
   }
 
-  
-
- 
-
- 
-
- 
-
-
-
- 
-
-  /// Builds a social sign-in button (Google or Facebook)
   Widget _buildSocialSignInButton({
     required String label,
     required String assetPath,
@@ -149,24 +131,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = context.watch<LoginFormProvider>();
+
     return Scaffold(
       body: buildGradientBackground(
         Stack(
           children: [
             Positioned(
-            top: 200,
-            left: -180,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(
-                sigmaX: 8,
-                sigmaY: 8,
-              ),
-              child: SvgPicture.asset(
-                'assets/blobs/blob3.svg',
-                width: 700,
+              top: 200,
+              left: -180,
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(
+                  sigmaX: 8,
+                  sigmaY: 8,
+                ),
+                child: SvgPicture.asset(
+                  'assets/blobs/blob3.svg',
+                  width: 700,
+                ),
               ),
             ),
-          ),
             SingleChildScrollView(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
@@ -175,56 +159,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Logo Section
                       buildLogoSection(),
                       const SizedBox(height: 160),
-
-                      // Tab Buttons
                       buildTabButtons(context),
                       const SizedBox(height: 30),
-
-                      // Email Input Field
                       buildInputField(
                         controller: emailController,
                         focusNode: emailFocusNode,
                         hintText: 'Email',
                         prefixIcon: Icons.email,
-                        errorText: emailError,
+                        errorText: loginProvider.emailError,
                       ),
                       const SizedBox(height: 16),
-
-                      // Password Input Field
                       buildInputField(
                         controller: passwordController,
                         focusNode: passwordFocusNode,
                         hintText: 'Password',
                         prefixIcon: Icons.lock,
-                        obscureText: obscurePassword,
-                        errorText: passwordError,
+                        obscureText: loginProvider.obscurePassword,
+                        errorText: loginProvider.passwordError,
                         suffixIcon: GestureDetector(
                           onTap: () {
-                            setState(() {
-                              obscurePassword = !obscurePassword;
-                            });
+                            context
+                                .read<LoginFormProvider>()
+                                .togglePasswordVisibility();
                           },
                           child: Icon(
-                            obscurePassword
+                            loginProvider.obscurePassword
                                 ? Icons.visibility_off
                                 : Icons.visibility,
                             color: AppColors.hintTextColor,
                           ),
                         ),
                       ),
-
-                      // Forgot Password Button
                       buildForgotPasswordButton(),
                       const SizedBox(height: 16),
-
-                      // Login Button
-                      _buildLoginButton(),
+                      buildLoginButton(context, onPressed: _onLoginPressed),
                       const SizedBox(height: 30),
-
-                      // Google Sign In Button
                       _buildSocialSignInButton(
                         label: 'Sign in with Google',
                         assetPath: 'assets/images/google_logo.png',
@@ -233,8 +204,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       const SizedBox(height: 12),
-
-                      // Facebook Sign In Button
                       _buildSocialSignInButton(
                         label: 'Sign in with Facebook',
                         assetPath: 'assets/images/facebook_logo.png',

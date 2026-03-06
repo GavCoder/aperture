@@ -1,40 +1,40 @@
 import 'package:aperture/miscellaneous/colors.dart';
-import 'package:aperture/services/validations.dart';
+import 'package:aperture/providers/register_form_provider.dart';
 import 'package:aperture/widgets/build_background.dart';
 import 'package:aperture/widgets/build_logo_section.dart';
 import 'package:aperture/widgets/build_tab_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<RegisterFormProvider>(
+      create: (_) => RegisterFormProvider(),
+      child: const _RegisterScreenView(),
+    );
+  }
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  late TextEditingController usernameController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-  late TextEditingController confirmPasswordController;
+class _RegisterScreenView extends StatefulWidget {
+  const _RegisterScreenView();
 
-  late FocusNode usernameFocusNode;
-  late FocusNode emailFocusNode;
-  late FocusNode passwordFocusNode;
-  late FocusNode confirmPasswordFocusNode;
+  @override
+  State<_RegisterScreenView> createState() => _RegisterScreenViewState();
+}
 
-  bool obscurePassword = true;
-  bool obscureConfirmPassword = true;
+class _RegisterScreenViewState extends State<_RegisterScreenView> {
+  late final TextEditingController usernameController;
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final TextEditingController confirmPasswordController;
 
-  String? usernameError;
-  String? emailError;
-  String? passwordError;
-  String? confirmPasswordError;
-
-  // Password strength state
-  double passwordStrength = 0.0;
-  Map<String, bool> passwordRequirements = {};
-  String passwordSuggestion = '';
+  late final FocusNode usernameFocusNode;
+  late final FocusNode emailFocusNode;
+  late final FocusNode passwordFocusNode;
+  late final FocusNode confirmPasswordFocusNode;
 
   @override
   void initState() {
@@ -49,7 +49,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     passwordFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
 
-    // Add listeners for real-time validation
     usernameController.addListener(_validateUsername);
     emailController.addListener(_validateEmail);
     passwordController.addListener(_validatePassword);
@@ -58,6 +57,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
+    usernameController.removeListener(_validateUsername);
+    emailController.removeListener(_validateEmail);
+    passwordController.removeListener(_validatePassword);
+    confirmPasswordController.removeListener(_validateConfirmPassword);
+
     usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
@@ -67,96 +71,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     confirmPasswordFocusNode.dispose();
-
     super.dispose();
   }
 
-  /// Validates username in real-time
   void _validateUsername() {
-    setState(() {
-      usernameError = ValidationService.validateUsername(usernameController.text);
-    });
+    context
+        .read<RegisterFormProvider>()
+        .validateUsername(usernameController.text);
   }
 
-  /// Validates email in real-time
   void _validateEmail() {
-    setState(() {
-      emailError = ValidationService.validateEmail(emailController.text);
-    });
+    context.read<RegisterFormProvider>().validateEmail(emailController.text);
   }
 
-  /// Validates password in real-time
   void _validatePassword() {
-    setState(() {
-      passwordError = ValidationService.validatePassword(passwordController.text);
-      // Update strength indicator and suggestions
-      _updatePasswordStrength(passwordController.text);
-      // Re-validate confirm password when password changes
-      _validateConfirmPassword();
-    });
+    context.read<RegisterFormProvider>().validatePassword(
+          password: passwordController.text,
+          confirmPassword: confirmPasswordController.text,
+        );
   }
 
-  /// Updates the password strength and suggestion text
-  void _updatePasswordStrength(String password) {
-    final reqs = ValidationService.getPasswordRequirements(password);
-    final total = reqs.length;
-    final met = reqs.values.where((v) => v).length;
-    passwordRequirements = reqs;
-    passwordStrength = total == 0 ? 0.0 : met / total;
-
-    if (passwordStrength >= 1.0) {
-      passwordSuggestion = 'Excellent — strong password';
-    } else if (passwordStrength >= 0.66) {
-      passwordSuggestion = 'Good — add one more requirement to be stronger';
-    } else if (passwordStrength >= 0.33) {
-      passwordSuggestion = 'Weak — try adding uppercase, lowercase, or a special character';
-    } else {
-      passwordSuggestion = 'Very weak — use at least 12 chars and include !@#\$% and mixed case';
-    }
-  }
-
-  /// Validates confirm password in real-time
   void _validateConfirmPassword() {
-    setState(() {
-      confirmPasswordError = ValidationService.validatePasswordMatch(
-        passwordController.text,
-        confirmPasswordController.text,
-      );
-    });
+    context.read<RegisterFormProvider>().validateConfirmPassword(
+          password: passwordController.text,
+          confirmPassword: confirmPasswordController.text,
+        );
   }
 
-  /// Validates all fields and returns true if all are valid
   bool _validateAllFields() {
-    final String usernameErrorMsg =
-        ValidationService.validateUsername(usernameController.text) ?? '';
-    final String emailErrorMsg =
-        ValidationService.validateEmail(emailController.text) ?? '';
-    final String passwordErrorMsg =
-        ValidationService.validatePassword(passwordController.text) ?? '';
-    final String confirmPasswordErrorMsg =
-        ValidationService.validatePasswordMatch(
-              passwordController.text,
-              confirmPasswordController.text,
-            ) ??
-            '';
-
-    setState(() {
-      usernameError = usernameErrorMsg.isNotEmpty ? usernameErrorMsg : null;
-      emailError = emailErrorMsg.isNotEmpty ? emailErrorMsg : null;
-      passwordError = passwordErrorMsg.isNotEmpty ? passwordErrorMsg : null;
-      confirmPasswordError =
-          confirmPasswordErrorMsg.isNotEmpty ? confirmPasswordErrorMsg : null;
-    });
-
-    return usernameErrorMsg.isEmpty &&
-        emailErrorMsg.isEmpty &&
-        passwordErrorMsg.isEmpty &&
-        confirmPasswordErrorMsg.isEmpty;
+    return context.read<RegisterFormProvider>().validateAllFields(
+          username: usernameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+          confirmPassword: confirmPasswordController.text,
+        );
   }
 
-
-
-  /// Builds an input field widget with error display
   Widget _buildInputField({
     required TextEditingController controller,
     required FocusNode focusNode,
@@ -188,13 +138,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             suffixIcon: suffixIcon,
             filled: true,
             fillColor: errorText != null
-                ? Colors.red.withOpacity(0.1)
+                ? Colors.red.withValues(alpha: 0.1)
                 : AppColors.inputFillColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
                 color: errorText != null
-                    ? Colors.red.withOpacity(0.5)
+                    ? Colors.red.withValues(alpha: 0.5)
                     : BorderSide.none.color,
               ),
             ),
@@ -222,14 +172,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  /// Builds the primary register button
   Widget _buildRegisterButton() {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           if (_validateAllFields()) {
-            // TODO: Implement register functionality
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Registration successful!'),
@@ -260,12 +208,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  /// Password strength indicator widget
-  Widget _buildPasswordStrengthIndicator() {
+  Widget _buildPasswordStrengthIndicator(RegisterFormProvider registerProvider) {
     Color strengthColor;
-    if (passwordStrength <= 0.33) {
+    if (registerProvider.passwordStrength <= 0.33) {
       strengthColor = Colors.red;
-    } else if (passwordStrength <= 0.66) {
+    } else if (registerProvider.passwordStrength <= 0.66) {
       strengthColor = Colors.orange;
     } else {
       strengthColor = Colors.green;
@@ -279,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: LinearProgressIndicator(
-              value: passwordStrength,
+              value: registerProvider.passwordStrength,
               minHeight: 8,
               backgroundColor: AppColors.whiteWithOpacity(0.15),
               valueColor: AlwaysStoppedAnimation<Color>(strengthColor),
@@ -287,25 +234,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            passwordSuggestion,
+            registerProvider.passwordSuggestion,
             style: TextStyle(
               color: AppColors.whiteWithOpacity(0.9),
               fontSize: 12,
             ),
           ),
           const SizedBox(height: 8),
-          // Show missing requirements as small bullets
           Wrap(
             spacing: 8,
             runSpacing: 6,
-            children: passwordRequirements.entries.map((e) {
-              final met = e.value;
+            children: registerProvider.passwordRequirements.entries.map((entry) {
+              final met = entry.value;
               return Container(
                 padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                 decoration: BoxDecoration(
                   color: met
                       ? AppColors.whiteWithOpacity(0.12)
-                      : Colors.red.withOpacity(0.12),
+                      : Colors.red.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
@@ -318,7 +264,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      e.key,
+                      entry.key,
                       style: TextStyle(
                         color: AppColors.whiteWithOpacity(0.9),
                         fontSize: 11,
@@ -336,6 +282,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final registerProvider = context.watch<RegisterFormProvider>();
+
     return Scaffold(
       body: buildGradientBackground(
         SingleChildScrollView(
@@ -346,51 +294,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Logo Section
                   buildLogoSection(),
                   const SizedBox(height: 40),
-
-                  // Tab Buttons
                   buildTabButtons(context),
                   const SizedBox(height: 30),
-
-                  // Username Input Field
                   _buildInputField(
                     controller: usernameController,
                     focusNode: usernameFocusNode,
                     hintText: 'Username',
                     prefixIcon: Icons.person,
-                    errorText: usernameError,
+                    errorText: registerProvider.usernameError,
                     maxLength: 30,
                   ),
                   const SizedBox(height: 16),
-
-                  // Email Input Field
                   _buildInputField(
                     controller: emailController,
                     focusNode: emailFocusNode,
                     hintText: 'Email',
                     prefixIcon: Icons.email,
-                    errorText: emailError,
+                    errorText: registerProvider.emailError,
                   ),
                   const SizedBox(height: 16),
-
-                  // Password Input Field
                   _buildInputField(
                     controller: passwordController,
                     focusNode: passwordFocusNode,
                     hintText: 'Password',
                     prefixIcon: Icons.lock,
-                    obscureText: obscurePassword,
-                    errorText: passwordError,
+                    obscureText: registerProvider.obscurePassword,
+                    errorText: registerProvider.passwordError,
                     suffixIcon: GestureDetector(
                       onTap: () {
-                        setState(() {
-                          obscurePassword = !obscurePassword;
-                        });
+                        context
+                            .read<RegisterFormProvider>()
+                            .togglePasswordVisibility();
                       },
                       child: Icon(
-                        obscurePassword
+                        registerProvider.obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
                         color: AppColors.hintTextColor,
@@ -398,26 +337,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  // Password strength indicator
-                  _buildPasswordStrengthIndicator(),
+                  _buildPasswordStrengthIndicator(registerProvider),
                   const SizedBox(height: 8),
-
-                  // Confirm Password Input Field
                   _buildInputField(
                     controller: confirmPasswordController,
                     focusNode: confirmPasswordFocusNode,
                     hintText: 'Confirm Password',
                     prefixIcon: Icons.lock,
-                    obscureText: obscureConfirmPassword,
-                    errorText: confirmPasswordError,
+                    obscureText: registerProvider.obscureConfirmPassword,
+                    errorText: registerProvider.confirmPasswordError,
                     suffixIcon: GestureDetector(
                       onTap: () {
-                        setState(() {
-                          obscureConfirmPassword = !obscureConfirmPassword;
-                        });
+                        context
+                            .read<RegisterFormProvider>()
+                            .toggleConfirmPasswordVisibility();
                       },
                       child: Icon(
-                        obscureConfirmPassword
+                        registerProvider.obscureConfirmPassword
                             ? Icons.visibility_off
                             : Icons.visibility,
                         color: AppColors.hintTextColor,
@@ -425,8 +361,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 30),
-
-                  // Register Button
                   _buildRegisterButton(),
                 ],
               ),
