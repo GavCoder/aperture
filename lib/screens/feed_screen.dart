@@ -20,7 +20,7 @@ class FeedScreen extends StatelessWidget {
             child: ImageFiltered(
               imageFilter: ImageFilter.blur(
                 sigmaX: 8,
-                sigmaY: 8,                
+                sigmaY: 8,
               ),
               child: SvgPicture.asset(
                 'assets/blobs/blob1.svg',
@@ -34,7 +34,7 @@ class FeedScreen extends StatelessWidget {
             child: ImageFiltered(
               imageFilter: ImageFilter.blur(
                 sigmaX: 8,
-                sigmaY: 8,                
+                sigmaY: 8,
               ),
               child: SvgPicture.asset(
                 'assets/blobs/blob2.svg',
@@ -48,7 +48,7 @@ class FeedScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 40,
+                  top: 60,
                   left: 18,
                   right: 18,
                 ),
@@ -89,6 +89,10 @@ class FeedScreen extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   itemCount: 5,
+                  padding: const EdgeInsets.only(
+                    bottom: 0, // to avoid FAB
+                    top: 5,
+                  ), 
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -130,7 +134,7 @@ class FeedScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Positioned(
+                          Positioned(
                             bottom: 30,
                             left: 20,
                             right:
@@ -139,7 +143,7 @@ class FeedScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Yusuf Gandali",
                                   style: TextStyle(
                                     fontSize: 18,
@@ -147,16 +151,16 @@ class FeedScreen extends StatelessWidget {
                                     color: AppColors.textWhite,
                                   ),
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Text.rich(
                                   TextSpan(
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.textWhite,
                                     ),
                                     children: [
-                                      TextSpan(
+                                      const TextSpan(
                                         text:
                                             'The way of the water is a ritual of the people in the heart of the Asian continent... ',
                                         style: TextStyle(
@@ -164,11 +168,18 @@ class FeedScreen extends StatelessWidget {
                                           color: AppColors.textWhite,
                                         ),
                                       ),
-                                      TextSpan(
-                                        text: 'more',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.textDarkGrey),
+                                      WidgetSpan(
+                                        child: GestureDetector(
+                                          onTap:
+                                              () {}, // TODO: Implement "more" functionality to expand text
+                                          child: const Text(
+                                            'more',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.textLightGrey,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
