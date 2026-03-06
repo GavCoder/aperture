@@ -10,9 +10,9 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      backgroundColor: AppColors.scaffoldBackground,
+      // Removed SafeArea to allow background blobs to extend to edges of screen
+      body: Stack(
         children: [
           Positioned(
             top: -200,
@@ -90,7 +90,6 @@ class FeedScreen extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: 5,
                   padding: const EdgeInsets.only(
-                    bottom: 0, // to avoid FAB
                     top: 5,
                   ), 
                   itemBuilder: (context, index) {
