@@ -1,5 +1,8 @@
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/services/validations.dart';
+import 'package:aperture/widgets/build_background.dart';
+import 'package:aperture/widgets/build_logo_section.dart';
+import 'package:aperture/widgets/build_tab_buttons.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -151,114 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         confirmPasswordErrorMsg.isEmpty;
   }
 
-  /// Builds the gradient background container
-  Widget _buildGradientBackground(Widget child) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: AppColors.appGradient,
-        ),
-      ),
-      child: child,
-    );
-  }
 
-  /// Builds the aperture logo and branding section
-  Widget _buildLogoSection() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [AppColors.logoPurple, AppColors.logoBlue],
-            ),
-          ),
-          child: Icon(
-            Icons.lens_blur,
-            color: AppColors.whiteWithOpacity(0.8),
-            size: 24,
-          ),
-        ),
-        const SizedBox(width: 12),
-        const Text(
-          'aperture',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textWhite,
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// Builds the login/register tab buttons
-  Widget _buildTabButtons() {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.tabBackgroundInactiveColor,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      padding: const EdgeInsets.all(4),
-      child: Row(
-        children: [
-          // Login Tab
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Color(0xFFB3B3B3),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Register Tab
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: BoxDecoration(
-                color: AppColors.tabBackgroundColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Center(
-                child: Text(
-                  'Register',
-                  style: TextStyle(
-                    color: AppColors.textWhite,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   /// Builds an input field widget with error display
   Widget _buildInputField({
@@ -441,7 +337,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildGradientBackground(
+      body: buildGradientBackground(
         SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -451,11 +347,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Logo Section
-                  _buildLogoSection(),
+                  buildLogoSection(),
                   const SizedBox(height: 40),
 
                   // Tab Buttons
-                  _buildTabButtons(),
+                  buildTabButtons(context),
                   const SizedBox(height: 30),
 
                   // Username Input Field

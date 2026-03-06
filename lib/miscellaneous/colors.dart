@@ -59,5 +59,5 @@ class AppColors {
   static Color buttonBackgroundColor = whiteWithOpacity(0.2);
   static Color hintTextColor = whiteWithOpacity(0.6);
   static Color tabBackgroundColor = whiteWithOpacity(0.25);
-  static Color tabBackgroundInactiveColor = blackWithOpacity(0.2);
+  static Color tabBackgroundInactiveColor = blackWithOpacity(0.3);
 }
