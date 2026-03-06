@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   //TODO: Add ThemeData to the app, and make it look nice
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp( 
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: '/',
       // onGenerateRoute: AppRouter.generateRoute,

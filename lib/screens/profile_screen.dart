@@ -28,12 +28,13 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 30,
+              height: 50,
             ),
             Center(
               child: Stack(
+                alignment: Alignment.bottomRight,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 100,
                     backgroundColor: AppColors.gradientPurple,
                   ),
@@ -46,38 +47,46 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                alignment: Alignment.bottomRight,
               ),
             ),
-            const SizedBox(height: 20),
-            ProfileEditingFields(
-              text:
-                  'This is the user bio. It can be edited by clicking the edit icon at the bottom right corner of this container.\nThis is the user bio. It can be edited by clicking the edit icon at the bottom right corner of this container.',
-              heading: 'Bio:',
-              toolTip: 'Edit Bio',
+            const SizedBox(height: 25),
+            Center(
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  Container(
+                    height: 100,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey[300]!,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      'Bio goes here',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 180,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.edit_rounded,
+                        color: Colors.grey[200],
+                        size: 25,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
-            ProfileEditingFields(
-              text:
-                  'This is the username. It can be edited by clicking the edit icon at the bottom right corner of this container.',
-              heading: 'Username:',
-              toolTip: 'Edit Username',
-            ),
-            const SizedBox(height: 20),
-            ProfileEditingFields(
-              text:
-                  'This is the email. It can be edited by clicking the edit icon at the bottom right corner of this container.',
-              heading: 'Email:',
-              toolTip: 'Edit Email',
-            ),
-            const SizedBox(height: 20),
-            ProfileEditingFields(
-              text:
-                  'This is the password. It can be edited by clicking the edit icon at the bottom right corner of this container.',
-              heading: 'Password:',
-              toolTip: 'Edit Password',
-            ),
-            UserLevel(),
           ],
         ),
       ),
