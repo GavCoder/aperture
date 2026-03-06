@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 100,
                     backgroundColor: AppColors.gradientPurple,
                   ),

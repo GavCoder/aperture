@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,17 +17,29 @@ class FeedScreen extends StatelessWidget {
           Positioned(
             top: -200,
             left: -50,
-            child: SvgPicture.asset(
-              'assets/blobs/blob1.svg',
-              width: 320,
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(
+                sigmaX: 8,
+                sigmaY: 8,                
+              ),
+              child: SvgPicture.asset(
+                'assets/blobs/blob1.svg',
+                width: 320,
+              ),
             ),
           ),
           Positioned(
-            bottom: -200,
-            right: -50,
-            child: SvgPicture.asset(
-              'assets/blobs/blob2.svg',
-              width: 320,
+            bottom: -150,
+            right: -30,
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(
+                sigmaX: 8,
+                sigmaY: 8,                
+              ),
+              child: SvgPicture.asset(
+                'assets/blobs/blob2.svg',
+                width: 350,
+              ),
             ),
           ),
           Column(
@@ -98,6 +112,7 @@ class FeedScreen extends StatelessWidget {
                               child: Image.asset(
                                 'assets/images/Skinny Dipping.png',
                                 fit: BoxFit.cover,
+                                alignment: const Alignment(0.3, 0),
                               ),
                             ),
                           ),
@@ -118,7 +133,8 @@ class FeedScreen extends StatelessWidget {
                           const Positioned(
                             bottom: 30,
                             left: 20,
-                            right: 20, // keeps text from going all the way to the edge of the card
+                            right:
+                                20, // keeps text from going all the way to the edge of the card
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,8 +160,8 @@ class FeedScreen extends StatelessWidget {
                                         text:
                                             'The way of the water is a ritual of the people in the heart of the Asian continent... ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          color: AppColors.textLightGrey,
+                                          fontWeight: FontWeight.w200,
+                                          color: AppColors.textWhite,
                                         ),
                                       ),
                                       TextSpan(
