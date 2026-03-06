@@ -1,5 +1,8 @@
 import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/widgets/profile_editing_widget.dart';
+import 'package:aperture/widgets/user_level_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -19,8 +22,8 @@ class ProfileScreen extends StatelessWidget {
         ),
         backgroundColor: AppColors.gradientPurple,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

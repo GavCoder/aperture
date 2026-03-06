@@ -10,6 +10,7 @@ class AppColors {
   static const Color gradientMediumPurple = Color(0xFF8B6BA8);
   static const Color gradientRed = Color(0xFFA85C5C);
   static const Color gradientOrange = Color(0xFFD45C4C);
+  
 
   // Scaffold Background Color
   static const Color scaffoldBackground = Color.fromARGB(255, 0, 0, 0);
