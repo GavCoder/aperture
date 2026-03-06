@@ -1,5 +1,4 @@
 import 'package:aperture/miscellaneous/colors.dart';
-import 'package:aperture/widgets/user_level_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfileEditingFields extends StatelessWidget {
