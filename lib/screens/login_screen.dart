@@ -194,7 +194,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       ),
                       buildForgotPasswordButton(),
                       const SizedBox(height: 16),
-                      buildLoginButton(context, onPressed: _onLoginPressed),
+                      buildLoginButton(onPressed: _onLoginPressed),
                       const SizedBox(height: 30),
                       _buildSocialSignInButton(
                         label: 'Sign in with Google',

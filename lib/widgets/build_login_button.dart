@@ -1,9 +1,8 @@
  import 'package:aperture/miscellaneous/colors.dart';
-import 'package:aperture/screens/feed_screen.dart';
 import 'package:flutter/material.dart';
 
 /// Builds the primary login button
-  Widget buildLoginButton(context, {required Function onPressed}) {
+  Widget buildLoginButton({required Function onPressed}) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
