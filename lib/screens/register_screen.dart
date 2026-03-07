@@ -133,7 +133,7 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
                   children: [
                     const LogoSection(),
                     const SizedBox(height: 160),
-                    const TabButtons(),
+                    const TabButtons(label: 'Register'),
                     const SizedBox(height: 30),
                     InputField(
                       controller: usernameController,

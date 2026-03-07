@@ -102,7 +102,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                   children: [
                     const LogoSection(),
                     const SizedBox(height: 160),
-                    const TabButtons(),
+                    const TabButtons(label: 'Login'),
                     const SizedBox(height: 30),
                     InputField(
                       controller: emailController,
