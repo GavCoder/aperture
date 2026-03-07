@@ -1,8 +1,18 @@
- import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/miscellaneous/colors.dart';
 import 'package:flutter/material.dart';
 
-/// Builds the primary login button
-  Widget buildLoginButton({required Function onPressed, required String btnText}) {
+class AppButton extends StatelessWidget {
+  final String btnText;
+  final Function onPressed;
+
+  const AppButton({
+    super.key,
+    required this.btnText,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -29,3 +39,4 @@ import 'package:flutter/material.dart';
       ),
     );
   }
+}

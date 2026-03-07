@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
+import 'package:aperture/widgets/app_button.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/build_background.dart';
 import 'package:aperture/widgets/build_forgot_button.dart';
-import 'package:aperture/widgets/build_input_field.dart';
-import 'package:aperture/widgets/build_login_button.dart';
 import 'package:aperture/widgets/build_logo_section.dart';
 import 'package:aperture/widgets/build_tab_buttons.dart';
+import 'package:aperture/widgets/input_field.dart';
+import 'package:aperture/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -82,54 +82,6 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
     }
   }
 
-  Widget _buildSocialSignInButton({
-    required String label,
-    required String assetPath,
-    required VoidCallback onPressed,
-  }) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.textWhite,
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              assetPath,
-              height: 25,
-              width: 25,
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(
-                  label.contains('Google')
-                      ? Icons.g_mobiledata
-                      : Icons.facebook,
-                  color: AppColors.textDarkGrey,
-                  size: 20,
-                );
-              },
-            ),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textDarkGrey,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final loginProvider = context.watch<LoginFormProvider>();
@@ -156,7 +108,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       const SizedBox(height: 160),
                       buildTabButtons(context),
                       const SizedBox(height: 30),
-                      buildInputField(
+                      InputField(
                         controller: emailController,
                         focusNode: emailFocusNode,
                         hintText: 'Email',
@@ -164,13 +116,13 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                         errorText: loginProvider.emailError,
                       ),
                       const SizedBox(height: 16),
-                      buildInputField(
+                      InputField(
                         controller: passwordController,
                         focusNode: passwordFocusNode,
                         hintText: 'Password',
                         prefixIcon: Icons.lock,
-                        obscureText: loginProvider.obscurePassword,
                         errorText: loginProvider.passwordError,
+                        obscureText: loginProvider.obscurePassword,
                         suffixIcon: GestureDetector(
                           onTap: () {
                             context
@@ -187,12 +139,12 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       ),
                       buildForgotPasswordButton(),
                       const SizedBox(height: 16),
-                      buildLoginButton(
-                        onPressed: _onLoginPressed,
+                      AppButton(
                         btnText: 'Login',
+                        onPressed: _onLoginPressed,
                       ),
                       const SizedBox(height: 30),
-                      _buildSocialSignInButton(
+                      SocialLoginButton(
                         label: 'Sign in with Google',
                         assetPath: 'assets/images/google_logo.png',
                         onPressed: () {
@@ -200,7 +152,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                         },
                       ),
                       const SizedBox(height: 12),
-                      _buildSocialSignInButton(
+                      SocialLoginButton(
                         label: 'Sign in with Facebook',
                         assetPath: 'assets/images/facebook_logo.png',
                         onPressed: () {

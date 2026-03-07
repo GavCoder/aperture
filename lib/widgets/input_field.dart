@@ -1,16 +1,28 @@
- import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/miscellaneous/colors.dart';
 import 'package:flutter/material.dart';
 
-/// Builds an input field widget with error display
-  Widget buildInputField({
-    required TextEditingController controller,
-    required FocusNode focusNode,
-    required String hintText,
-    required IconData prefixIcon,
-    required String? errorText,
-    bool obscureText = false,
-    Widget? suffixIcon,
-  }) {
+class InputField extends StatelessWidget {
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final String hintText;
+  final IconData prefixIcon;
+  final String? errorText;
+  final bool obscureText;
+  final int? maxLength;
+  final Widget? suffixIcon;
+  const InputField({
+    super.key,
+    required this.controller,
+    required this.focusNode,
+    required this.hintText,
+    required this.prefixIcon,
+    this.errorText,
+    this.obscureText = false,
+    this.suffixIcon, this.maxLength,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,6 +30,7 @@ import 'package:flutter/material.dart';
           controller: controller,
           focusNode: focusNode,
           obscureText: obscureText,
+          maxLength: maxLength,
           style: const TextStyle(color: AppColors.textWhite),
           decoration: InputDecoration(
             hintText: hintText,
@@ -52,7 +65,7 @@ import 'package:flutter/material.dart';
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              errorText,
+              errorText!,
               style: const TextStyle(
                 color: Colors.red,
                 fontSize: 12,
@@ -64,3 +77,4 @@ import 'package:flutter/material.dart';
       ],
     );
   }
+}

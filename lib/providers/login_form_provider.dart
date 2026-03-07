@@ -1,4 +1,4 @@
-import 'package:aperture/services/validations.dart';
+import 'package:aperture/utils/validations.dart';
 import 'package:flutter/foundation.dart';
 
 class LoginFormProvider extends ChangeNotifier {
