@@ -75,13 +75,17 @@ class FeedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.person,
-                        color: AppColors.iconWhite,
-                        size: 28,
-                      ),
+                    Image.asset(
+                      'assets/images/Logo.png',
+                      height: 30,
+                      width: 30,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.camera_alt,
+                          color: AppColors.textWhite,
+                          size: 40,
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -90,8 +94,8 @@ class FeedScreen extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: 5,
                   padding: const EdgeInsets.only(
-                    top: 5,
-                  ), 
+                    top: 10,
+                  ),
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
