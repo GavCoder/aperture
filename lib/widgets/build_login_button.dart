@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 /// Builds the primary login button
-  Widget buildLoginButton({required Function onPressed}) {
+  Widget buildLoginButton({required Function onPressed, required String btnText}) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -18,9 +18,9 @@ import 'package:flutter/material.dart';
             ),
           ),
         ),
-        child: const Text(
-          'Login',
-          style: TextStyle(
+        child: Text(
+          btnText,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: AppColors.textWhite,

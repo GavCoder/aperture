@@ -75,17 +75,20 @@ class FeedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Image.asset(
-                      'assets/images/Logo.png',
-                      height: 30,
-                      width: 30,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.camera_alt,
-                          color: AppColors.textWhite,
-                          size: 40,
-                        );
-                      },
+                    GestureDetector(
+                      onTap: () {}, // TODO: Implement profile page and navigation
+                      child: Image.asset(
+                        'assets/images/Logo.png',
+                        height: 30,
+                        width: 30,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.camera_alt,
+                            color: AppColors.textWhite,
+                            size: 40,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

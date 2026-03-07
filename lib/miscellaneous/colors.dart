@@ -55,7 +55,7 @@ class AppColors {
 
   // Button and Input Colors
   static Color inputFillColor = whiteWithOpacity(0.15);
-  static Color inputBorderColor = whiteWithOpacity(0.3);
+  static Color inputBorderColor = whiteWithOpacity(0.9);
   static Color buttonBackgroundColor = whiteWithOpacity(0.2);
   static Color hintTextColor = whiteWithOpacity(0.6);
   static Color tabBackgroundColor = whiteWithOpacity(0.25);
