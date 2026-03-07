@@ -3,7 +3,13 @@ import 'package:aperture/route_manager/app_router.dart';
 import 'package:flutter/material.dart';
 
  /// Builds the login/register tab buttons
-  Widget buildTabButtons(context) {
+class TabButtons extends StatelessWidget {
+  const TabButtons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.tabBackgroundInactiveColor,
@@ -61,3 +67,4 @@ import 'package:flutter/material.dart';
       ),
     );
   }
+}

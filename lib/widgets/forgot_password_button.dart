@@ -1,8 +1,14 @@
-  import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/miscellaneous/colors.dart';
 import 'package:flutter/material.dart';
 
 /// Builds the forgot password text button
-  Widget buildForgotPasswordButton() {
+class ForgotPasswordButton extends StatelessWidget {
+  const ForgotPasswordButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
@@ -20,3 +26,4 @@ import 'package:flutter/material.dart';
       ),
     );
   }
+}

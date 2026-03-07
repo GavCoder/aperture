@@ -2,7 +2,13 @@
 import 'package:flutter/material.dart';
 
  /// Builds the aperture logo and branding section
-  Widget buildLogoSection() {
+class LogoSection extends StatelessWidget {
+  const LogoSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -30,3 +36,4 @@ import 'package:flutter/material.dart';
       ],
     );
   }
+}

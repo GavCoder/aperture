@@ -10,7 +10,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.overlayDark.withOpacity(0.05),
       appBar: AppBar(
         elevation: 10,
         centerTitle: false,

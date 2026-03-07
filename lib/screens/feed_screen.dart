@@ -11,7 +11,6 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBackground,
       // Removed SafeArea to allow background blobs to extend to edges of screen
       body: Stack(
         children: [

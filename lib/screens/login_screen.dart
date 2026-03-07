@@ -1,14 +1,11 @@
-import 'dart:ui';
-
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/widgets/app_button.dart';
 import 'package:aperture/widgets/blobs.dart';
-import 'package:aperture/widgets/build_background.dart';
-import 'package:aperture/widgets/build_forgot_button.dart';
-import 'package:aperture/widgets/build_logo_section.dart';
-import 'package:aperture/widgets/build_tab_buttons.dart';
+import 'package:aperture/widgets/forgot_password_button.dart';
+import 'package:aperture/widgets/logo_section.dart';
+import 'package:aperture/widgets/tab_buttons.dart';
 import 'package:aperture/widgets/input_field.dart';
 import 'package:aperture/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
@@ -87,85 +84,83 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
     final loginProvider = context.watch<LoginFormProvider>();
 
     return Scaffold(
-      body: buildGradientBackground(
-        Stack(
-          children: [
-            const Blobs(
-              blobPath: 'assets/blobs/blob3.svg',
-              topPosition: 200,
-              leftPosition: -180,
-              svgWidth: 700,
-            ),
-            SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildLogoSection(),
-                      const SizedBox(height: 160),
-                      buildTabButtons(context),
-                      const SizedBox(height: 30),
-                      InputField(
-                        controller: emailController,
-                        focusNode: emailFocusNode,
-                        hintText: 'Email',
-                        prefixIcon: Icons.email,
-                        errorText: loginProvider.emailError,
-                      ),
-                      const SizedBox(height: 16),
-                      InputField(
-                        controller: passwordController,
-                        focusNode: passwordFocusNode,
-                        hintText: 'Password',
-                        prefixIcon: Icons.lock,
-                        errorText: loginProvider.passwordError,
-                        obscureText: loginProvider.obscurePassword,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            context
-                                .read<LoginFormProvider>()
-                                .togglePasswordVisibility();
-                          },
-                          child: Icon(
-                            loginProvider.obscurePassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: AppColors.hintTextColor,
-                          ),
+      body: Stack(
+        children: [
+          const Blobs(
+            blobPath: 'assets/blobs/blob3.svg',
+            topPosition: 200,
+            leftPosition: -180,
+            svgWidth: 700,
+          ),
+          SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const LogoSection(),
+                    const SizedBox(height: 160),
+                    const TabButtons(),
+                    const SizedBox(height: 30),
+                    InputField(
+                      controller: emailController,
+                      focusNode: emailFocusNode,
+                      hintText: 'Email',
+                      prefixIcon: Icons.email,
+                      errorText: loginProvider.emailError,
+                    ),
+                    const SizedBox(height: 16),
+                    InputField(
+                      controller: passwordController,
+                      focusNode: passwordFocusNode,
+                      hintText: 'Password',
+                      prefixIcon: Icons.lock,
+                      errorText: loginProvider.passwordError,
+                      obscureText: loginProvider.obscurePassword,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          context
+                              .read<LoginFormProvider>()
+                              .togglePasswordVisibility();
+                        },
+                        child: Icon(
+                          loginProvider.obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: AppColors.hintTextColor,
                         ),
                       ),
-                      buildForgotPasswordButton(),
-                      const SizedBox(height: 16),
-                      AppButton(
-                        btnText: 'Login',
-                        onPressed: _onLoginPressed,
-                      ),
-                      const SizedBox(height: 30),
-                      SocialLoginButton(
-                        label: 'Sign in with Google',
-                        assetPath: 'assets/images/google_logo.png',
-                        onPressed: () {
-                          // TODO: Implement Google sign in
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                      SocialLoginButton(
-                        label: 'Sign in with Facebook',
-                        assetPath: 'assets/images/facebook_logo.png',
-                        onPressed: () {
-                          // TODO: Implement Facebook sign in
-                        },
-                      ),
-                    ],
-                  ),
+                    ),
+                    const ForgotPasswordButton(),
+                    const SizedBox(height: 16),
+                    AppButton(
+                      btnText: 'Login',
+                      onPressed: _onLoginPressed,
+                    ),
+                    const SizedBox(height: 30),
+                    SocialLoginButton(
+                      label: 'Sign in with Google',
+                      assetPath: 'assets/images/google_logo.png',
+                      onPressed: () {
+                        // TODO: Implement Google sign in
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    SocialLoginButton(
+                      label: 'Sign in with Facebook',
+                      assetPath: 'assets/images/facebook_logo.png',
+                      onPressed: () {
+                        // TODO: Implement Facebook sign in
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
