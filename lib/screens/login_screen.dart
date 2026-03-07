@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
+import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/build_background.dart';
 import 'package:aperture/widgets/build_forgot_button.dart';
 import 'package:aperture/widgets/build_input_field.dart';
@@ -137,19 +138,11 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
       body: buildGradientBackground(
         Stack(
           children: [
-            Positioned(
-              top: 200,
-              left: -180,
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(
-                  sigmaX: 8,
-                  sigmaY: 8,
-                ),
-                child: SvgPicture.asset(
-                  'assets/blobs/blob3.svg',
-                  width: 700,
-                ),
-              ),
+            const Blobs(
+              blobPath: 'assets/blobs/blob3.svg',
+              topPosition: 200,
+              leftPosition: -180,
+              svgWidth: 700,
             ),
             SingleChildScrollView(
               child: SizedBox(
@@ -196,7 +189,8 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       const SizedBox(height: 16),
                       buildLoginButton(
                         onPressed: _onLoginPressed,
-                        btnText: 'Login',),
+                        btnText: 'Login',
+                      ),
                       const SizedBox(height: 30),
                       _buildSocialSignInButton(
                         label: 'Sign in with Google',

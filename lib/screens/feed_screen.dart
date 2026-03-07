@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/widgets/blobs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,33 +15,17 @@ class FeedScreen extends StatelessWidget {
       // Removed SafeArea to allow background blobs to extend to edges of screen
       body: Stack(
         children: [
-          Positioned(
-            top: -200,
-            left: -50,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(
-                sigmaX: 8,
-                sigmaY: 8,
-              ),
-              child: SvgPicture.asset(
-                'assets/blobs/blob1.svg',
-                width: 320,
-              ),
-            ),
+          const Blobs(
+            blobPath: 'assets/blobs/blob1.svg',
+            svgWidth: 320,
+            topPosition: -200,
+            leftPosition: -50,
           ),
-          Positioned(
-            bottom: -150,
-            right: -30,
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(
-                sigmaX: 8,
-                sigmaY: 8,
-              ),
-              child: SvgPicture.asset(
-                'assets/blobs/blob2.svg',
-                width: 350,
-              ),
-            ),
+          const Blobs(
+            blobPath: 'assets/blobs/blob2.svg',
+            svgWidth: 350,
+            bottomPosition: -150,
+            rightPosition: -30,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +61,8 @@ class FeedScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {}, // TODO: Implement profile page and navigation
+                      onTap:
+                          () {}, // TODO: Implement profile page and navigation
                       child: Image.asset(
                         'assets/images/Logo.png',
                         height: 30,

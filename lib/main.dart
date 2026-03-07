@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
+        initialRoute: '/',
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );
