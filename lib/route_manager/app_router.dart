@@ -1,3 +1,4 @@
+import 'package:aperture/screens/add_post_screen.dart';
 import 'package:aperture/screens/feed_screen.dart';
 import 'package:aperture/screens/login_screen.dart';
 import 'package:aperture/screens/profile_screen.dart';
@@ -11,6 +12,7 @@ class AppRouter {
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String profileRoute = '/profile';
+  static const String addPost = '/addPost';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -22,6 +24,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      case addPost:
+        return MaterialPageRoute(builder: (_) => const AddPostScreen());
 
       default:
         return MaterialPageRoute(

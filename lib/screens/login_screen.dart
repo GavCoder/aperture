@@ -125,7 +125,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       const ForgotPasswordButton(),
                       const SizedBox(height: 16),
                       AppButton(
-                        btnText: 'Login',
+                        btnText: const Text('Login'),
                         onPressed: _onLoginPressed,
                       ),
                       const SizedBox(height: 30),

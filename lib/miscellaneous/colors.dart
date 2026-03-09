@@ -25,7 +25,7 @@ class AppColors {
 
   static List<Color> imageOverlay = [ // doesn't work for some reason.
     Colors.transparent,
-    Colors.black.withValues(alpha: 0.8),    
+    Colors.black.withOpacity(0.8),    
   ];
 
   // Icon Colors
@@ -47,11 +47,11 @@ class AppColors {
 
   // Helper function to get white with opacity
   static Color whiteWithOpacity(double opacity) =>
-      Colors.white.withValues(alpha: opacity);
+      Colors.white.withOpacity(opacity);
 
   // Helper function to get black with opacity
   static Color blackWithOpacity(double opacity) =>
-      Colors.black.withValues(alpha: opacity);
+      Colors.black.withOpacity(opacity);
 
   // Button and Input Colors
   static Color inputFillColor = whiteWithOpacity(0.15);

@@ -118,7 +118,7 @@ class FeedScreen extends StatelessWidget {
                                 end: Alignment.bottomCenter,
                                 colors: [
                                   Colors.transparent,
-                                  Colors.black.withValues(alpha: 0.8),
+                                  Colors.black.withOpacity(0.8),
                                 ],
                               ),
                             ),

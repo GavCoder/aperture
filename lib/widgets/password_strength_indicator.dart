@@ -54,7 +54,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: met
                       ? AppColors.whiteWithOpacity(0.12)
-                      : Colors.red.withValues(alpha: 0.12),
+                      : Colors.red.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(

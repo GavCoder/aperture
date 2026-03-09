@@ -205,7 +205,7 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
                       ),
                       const SizedBox(height: 30),
                       AppButton(
-                        btnText: 'Register',
+                        btnText: const Text('Register'),
                         onPressed: () {
                           if (_validateAllFields()) {
                             ScaffoldMessenger.of(context).showSnackBar(

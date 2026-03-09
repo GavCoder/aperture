@@ -19,11 +19,28 @@ class UserLevel extends StatelessWidget {
               'Select User Level',
               style: TextStyle(color: Colors.white),
             ),
+            // White text for the selected value displayed on the button
+            selectedItemBuilder: (context) {
+              return UserLevelEnum.values
+                  .map(
+                    (level) => DropdownMenuItem<UserLevelEnum>(
+                      value: level,
+                      child: Text(
+                        level.name,
+                        style: const TextStyle(
+                            color: Colors.white), //white when selected
+                      ),
+                    ),
+                  ).toList();
+            },
+            // Default (dark) text for the dropdown popup list
             items: UserLevelEnum.values
                 .map(
                   (level) => DropdownMenuItem<UserLevelEnum>(
                     value: level,
-                    child: Text(level.name),
+                    child: Text(
+                      level.name, //default dark color for readability in popup
+                    ),
                   ),
                 )
                 .toList(),

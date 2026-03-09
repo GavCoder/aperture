@@ -44,13 +44,13 @@ class InputField extends StatelessWidget {
             suffixIcon: suffixIcon,
             filled: true,
             fillColor: errorText != null
-                ? Colors.red.withValues(alpha: 0.1)
+                ? Colors.red.withOpacity(0.1)
                 : AppColors.inputFillColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 color: errorText != null
-                    ? Colors.red.withValues(alpha: 0.5)
+                    ? Colors.red.withOpacity(0.5)
                     : BorderSide.none.color,
               ),
             ),
