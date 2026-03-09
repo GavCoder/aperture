@@ -1,4 +1,3 @@
-import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/widgets/app_button.dart';
@@ -8,6 +7,7 @@ import 'package:aperture/widgets/logo_section.dart';
 import 'package:aperture/widgets/tab_buttons.dart';
 import 'package:aperture/widgets/input_field.dart';
 import 'package:aperture/widgets/social_login_button.dart';
+import 'package:aperture/widgets/toggle_password_visibility.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -64,12 +64,12 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
   }
 
   void _validatePassword() {
-    context.read<LoginFormProvider>().validatePassword(passwordController.text);
+    context.read<LoginFormProvider>().validateLoginPassword(passwordController.text);
   }
 
   void _onLoginPressed() {
     final loginProvider = context.read<LoginFormProvider>();
-    final isValid = loginProvider.validateAllFields(
+    final isValid = loginProvider.validateAllLoginFields(
       email: emailController.text,
       password: passwordController.text,
     );
@@ -119,19 +119,7 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                       prefixIcon: Icons.lock,
                       errorText: loginProvider.passwordError,
                       obscureText: loginProvider.obscurePassword,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          context
-                              .read<LoginFormProvider>()
-                              .togglePasswordVisibility();
-                        },
-                        child: Icon(
-                          loginProvider.obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.hintTextColor,
-                        ),
-                      ),
+                      suffixIcon: TogglePasswordVisibility(loginProvider: loginProvider),
                     ),
                     const ForgotPasswordButton(),
                     const SizedBox(height: 16),
@@ -165,3 +153,5 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
     );
   }
 }
+
+

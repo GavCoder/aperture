@@ -1,9 +1,7 @@
-import 'dart:ui';
 
 import 'package:aperture/miscellaneous/colors.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});

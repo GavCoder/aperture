@@ -88,7 +88,7 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
   }
 
   void _validatePassword() {
-    context.read<RegisterFormProvider>().validatePassword(
+    context.read<RegisterFormProvider>().validateRegisterPassword(
           password: passwordController.text,
           confirmPassword: confirmPasswordController.text,
         );
@@ -102,7 +102,7 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
   }
 
   bool _validateAllFields() {
-    return context.read<RegisterFormProvider>().validateAllFields(
+    return context.read<RegisterFormProvider>().validateAllRegisterFields(
           username: usernameController.text,
           email: emailController.text,
           password: passwordController.text,

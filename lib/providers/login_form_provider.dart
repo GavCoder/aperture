@@ -20,7 +20,7 @@ class LoginFormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void validatePassword(String password) {
+  void validateLoginPassword(String password) {
     final nextPasswordError = ValidationService.validatePassword(password);
     if (_passwordError == nextPasswordError) {
       return;
@@ -30,7 +30,7 @@ class LoginFormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool validateAllFields({
+  bool validateAllLoginFields({
     required String email,
     required String password,
   }) {

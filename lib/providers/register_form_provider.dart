@@ -47,7 +47,7 @@ class RegisterFormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void validatePassword({
+  void validateRegisterPassword({
     required String password,
     required String confirmPassword,
   }) {
@@ -97,12 +97,12 @@ class RegisterFormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool validateAllFields({
+  bool validateAllRegisterFields({
     required String username,
     required String email,
     required String password,
     required String confirmPassword,
-  }) {
+  }) { 
     final nextUsernameError = ValidationService.validateUsername(username);
     final nextEmailError = ValidationService.validateEmail(email);
     final nextPasswordError = ValidationService.validatePassword(password);

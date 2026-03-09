@@ -59,7 +59,7 @@ class ProfileEditingFields extends StatelessWidget {
             left: 10,
             child: Text(
               heading,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
