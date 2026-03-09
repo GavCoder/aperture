@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBackground,
           fontFamily: 'Poppins',
         ),
-        initialRoute: '/register',
+        initialRoute: '/login',
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

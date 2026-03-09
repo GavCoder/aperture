@@ -123,95 +123,102 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
             leftPosition: -180,
             svgWidth: 700,
           ),
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const LogoSection(),
-                    const SizedBox(height: 160),
-                    const TabButtons(label: 'Register'),
-                    const SizedBox(height: 30),
-                    InputField(
-                      controller: usernameController,
-                      focusNode: usernameFocusNode,
-                      hintText: 'Username',
-                      prefixIcon: Icons.person,
-                      errorText: registerProvider.usernameError,
-                      maxLength: 30,
-                    ),
-                    const SizedBox(height: 16),
-                    InputField(
-                      controller: emailController,
-                      focusNode: emailFocusNode,
-                      hintText: 'Email',
-                      prefixIcon: Icons.email,
-                      errorText: registerProvider.emailError,
-                    ),
-                    const SizedBox(height: 16),
-                    InputField(
-                      controller: passwordController,
-                      focusNode: passwordFocusNode,
-                      hintText: 'Password',
-                      prefixIcon: Icons.lock,
-                      errorText: registerProvider.passwordError,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          context
-                              .read<RegisterFormProvider>()
-                              .togglePasswordVisibility();
-                        },
-                        child: Icon(
-                          registerProvider.obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.hintTextColor,
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+              ),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const LogoSection(),
+                      const SizedBox(height: 160),
+                      const TabButtons(label: 'Register'),
+                      const SizedBox(height: 30),
+                      InputField(
+                        controller: usernameController,
+                        focusNode: usernameFocusNode,
+                        hintText: 'Username',
+                        prefixIcon: Icons.person,
+                        errorText: registerProvider.usernameError,
+                        maxLength: 30,
+                      ),
+                      const SizedBox(height: 16),
+                      InputField(
+                        controller: emailController,
+                        focusNode: emailFocusNode,
+                        hintText: 'Email',
+                        prefixIcon: Icons.email,
+                        errorText: registerProvider.emailError,
+                      ),
+                      const SizedBox(height: 16),
+                      InputField(
+                        controller: passwordController,
+                        focusNode: passwordFocusNode,
+                        hintText: 'Password',
+                        prefixIcon: Icons.lock,
+                        errorText: registerProvider.passwordError,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            context
+                                .read<RegisterFormProvider>()
+                                .togglePasswordVisibility();
+                          },
+                          child: Icon(
+                            registerProvider.obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.hintTextColor,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    PasswordStrengthIndicator(
-                      registerProvider: registerProvider,
-                    ),
-                    const SizedBox(height: 8),
-                    InputField(
-                      controller: confirmPasswordController,
-                      focusNode: confirmPasswordFocusNode,
-                      hintText: 'Confirm Password',
-                      prefixIcon: Icons.lock,
-                      errorText: registerProvider.confirmPasswordError,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          context
-                              .read<RegisterFormProvider>()
-                              .toggleConfirmPasswordVisibility();
-                        },
-                        child: Icon(
-                          registerProvider.obscureConfirmPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.hintTextColor,
+                      const SizedBox(height: 8),
+                      PasswordStrengthIndicator(
+                        registerProvider: registerProvider,
+                      ),
+                      const SizedBox(height: 8),
+                      InputField(
+                        controller: confirmPasswordController,
+                        focusNode: confirmPasswordFocusNode,
+                        hintText: 'Confirm Password',
+                        prefixIcon: Icons.lock,
+                        errorText: registerProvider.confirmPasswordError,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            context
+                                .read<RegisterFormProvider>()
+                                .toggleConfirmPasswordVisibility();
+                          },
+                          child: Icon(
+                            registerProvider.obscureConfirmPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.hintTextColor,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    AppButton(
-                      btnText: 'Register',
-                      onPressed: () {
-                        if (_validateAllFields()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Registration successful!'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                      const SizedBox(height: 30),
+                      AppButton(
+                        btnText: 'Register',
+                        onPressed: () {
+                          if (_validateAllFields()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Registration successful!'),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

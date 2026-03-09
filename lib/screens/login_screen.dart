@@ -88,62 +88,64 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
         children: [
           const Blobs(
             blobPath: 'assets/blobs/blob3.svg',
-            topPosition: 200,
+            topPosition: 250,
             leftPosition: -180,
             svgWidth: 700,
           ),
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const LogoSection(),
-                    const SizedBox(height: 160),
-                    const TabButtons(label: 'Login'),
-                    const SizedBox(height: 30),
-                    InputField(
-                      controller: emailController,
-                      focusNode: emailFocusNode,
-                      hintText: 'Email',
-                      prefixIcon: Icons.email,
-                      errorText: loginProvider.emailError,
-                    ),
-                    const SizedBox(height: 16),
-                    InputField(
-                      controller: passwordController,
-                      focusNode: passwordFocusNode,
-                      hintText: 'Password',
-                      prefixIcon: Icons.lock,
-                      errorText: loginProvider.passwordError,
-                      obscureText: loginProvider.obscurePassword,
-                      suffixIcon: TogglePasswordVisibility(loginProvider: loginProvider),
-                    ),
-                    const ForgotPasswordButton(),
-                    const SizedBox(height: 16),
-                    AppButton(
-                      btnText: 'Login',
-                      onPressed: _onLoginPressed,
-                    ),
-                    const SizedBox(height: 30),
-                    SocialLoginButton(
-                      label: 'Sign in with Google',
-                      assetPath: 'assets/images/google_logo.png',
-                      onPressed: () {
-                        // TODO: Implement Google sign in
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    SocialLoginButton(
-                      label: 'Sign in with Facebook',
-                      assetPath: 'assets/images/facebook_logo.png',
-                      onPressed: () {
-                        // TODO: Implement Facebook sign in
-                      },
-                    ),
-                  ],
+          SafeArea(
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height, // Find best responsiveness practices for this
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const LogoSection(),
+                      const SizedBox(height: 160),
+                      const TabButtons(label: 'Login'),
+                      const SizedBox(height: 30),
+                      InputField(
+                        controller: emailController,
+                        focusNode: emailFocusNode,
+                        hintText: 'Email',
+                        prefixIcon: Icons.email,
+                        errorText: loginProvider.emailError,
+                      ),
+                      const SizedBox(height: 16),
+                      InputField(
+                        controller: passwordController,
+                        focusNode: passwordFocusNode,
+                        hintText: 'Password',
+                        prefixIcon: Icons.lock,
+                        errorText: loginProvider.passwordError,
+                        obscureText: loginProvider.obscurePassword,
+                        suffixIcon: TogglePasswordVisibility(loginProvider: loginProvider),
+                      ),
+                      const ForgotPasswordButton(),
+                      const SizedBox(height: 16),
+                      AppButton(
+                        btnText: 'Login',
+                        onPressed: _onLoginPressed,
+                      ),
+                      const SizedBox(height: 30),
+                      SocialLoginButton(
+                        label: 'Sign in with Google',
+                        assetPath: 'assets/images/google_logo.png',
+                        onPressed: () {
+                          // TODO: Implement Google sign in
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      SocialLoginButton(
+                        label: 'Sign in with Facebook',
+                        assetPath: 'assets/images/facebook_logo.png',
+                        onPressed: () {
+                          // TODO: Implement Facebook sign in
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
