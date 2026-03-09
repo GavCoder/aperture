@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
           const Blobs(
             blobPath: 'assets/blobs/blob1.svg',
             svgWidth: 490,
-            topPosition: -260,
+            topPosition: -280,
             leftPosition: -50,
           ),
           const Blobs(
@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                           icon: Icon(
                             Icons.add_a_photo_rounded,
                             color: Colors.grey[200],
-                            size: 25,
+                            size: 30,
                           ),
                         ),
                       ],
