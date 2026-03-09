@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF8B5CF6).withValues(alpha: 0.5), // withOpacity() is deprecated, using withValues
+                              color: const Color(0xFF8B5CF6).withOpacity(0.5),
                               blurRadius: 10,
                               spreadRadius: 1,
                             ),
@@ -197,7 +197,7 @@ class _FeaturedCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF6D28D9).withValues(alpha: 0.25),
+            color: const Color(0xFF6D28D9).withOpacity(0.25),
             blurRadius: 24,
             spreadRadius: 2,
             offset: const Offset(0, 8),
@@ -239,7 +239,7 @@ class _FeaturedCard extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      Colors.black.withValues(alpha: 0.15),
+                      Colors.black.withOpacity(0.15),
                       Colors.transparent,
                     ],
                     begin: Alignment.topCenter,
@@ -262,8 +262,8 @@ class _FeaturedCard extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withValues(alpha: 0.55),
-                      Colors.black.withValues(alpha: 0.85),
+                      Colors.black.withOpacity(0.55),
+                      Colors.black.withOpacity(0.85),
                     ],
                   ),
                 ),
@@ -296,7 +296,7 @@ class _FeaturedCard extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.72),
+                          color: Colors.white.withOpacity(0.72),
                           fontSize: 13.5,
                           height: 1.5,
                           fontFamily: 'Georgia',
@@ -310,7 +310,7 @@ class _FeaturedCard extends StatelessWidget {
                           TextSpan(
                             text: ' more',
                             style: TextStyle(
-                              color: const Color(0xFFB48EFF).withValues(alpha: 0.9),
+                              color: const Color(0xFFB48EFF).withOpacity(0.9),
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -334,7 +334,7 @@ class _FeaturedCard extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withValues(alpha: 0.3),
+                      Colors.black.withOpacity(0.3),
                       Colors.transparent,
                     ],
                   ),
@@ -384,7 +384,7 @@ class _ThumbnailStrip extends StatelessWidget {
                     ),
                     border: isFirst
                         ? Border.all(
-                            color: const Color(0xFF8B5CF6).withValues(alpha: 0.6),
+                            color: const Color(0xFF8B5CF6).withOpacity(0.6),
                             width: 1.5,
                           )
                         : null,
@@ -392,7 +392,7 @@ class _ThumbnailStrip extends StatelessWidget {
                   child: Icon(
                     Icons.image_outlined,
                     size: 22,
-                    color: Colors.white.withValues(alpha: 0.2),
+                    color: Colors.white.withOpacity(0.2),
                   ),
                 ),
               ),
@@ -453,12 +453,12 @@ class _FloatingAddButtonState extends State<_FloatingAddButton>
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF8B5CF6).withValues(alpha: 0.55),
+                color: const Color(0xFF8B5CF6).withOpacity(0.55),
                 blurRadius: 20,
                 spreadRadius: 2,
               ),
               BoxShadow(
-                color: const Color(0xFF6D28D9).withValues(alpha: 0.3),
+                color: const Color(0xFF6D28D9).withOpacity(0.3),
                 blurRadius: 8,
                 offset: const Offset(0, 4),
               ),
