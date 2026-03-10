@@ -47,12 +47,12 @@ class ProfileScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: IconButton(
-                          onPressed: () => Navigator.pop(context),
                           icon: const Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,
                             size: 25,
                           ),
+                          onPressed: () => Navigator.pop(context),
                         ),
                       ),
                     ],
