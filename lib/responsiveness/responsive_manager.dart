@@ -1,4 +1,4 @@
-import 'package:aperture/miscellaneous/screen_sizes.dart';
+import 'package:aperture/utils/screen_sizes.dart';
 import 'package:aperture/screens/login_screen.dart';
 import 'package:aperture/screens/register_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,7 @@
-import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/utils/colors.dart';
 import 'package:aperture/widgets/app_button.dart';
 import 'package:aperture/widgets/blobs.dart';
+import 'package:aperture/widgets/caption_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -111,10 +112,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
-                          // border: Border.all(
-                          //   color: Colors.white,
-                          //   width: 2,
-                          // ),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Center(
@@ -130,75 +127,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  TextField(
-                    maxLength: 500,
-                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                    controller: _captionController,
-                    focusNode: _captionFocusNode,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                    maxLines: null,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white54.withOpacity(0.1),
-                      counterStyle: TextStyle(
-                        color: Colors.white54,
-                      ),
-                      contentPadding: const EdgeInsets.all(15),
-                      prefixIcon: _captionFocusNode.hasFocus
-                          ? IconButton(
-                              icon: const Icon(
-                                Icons.check_circle_outline_rounded,
-                                color: Colors.green,
-                              ),
-                              onPressed: () => FocusScope.of(context).unfocus(),
-                            )
-                          : null,
-                      hintText: 'Add a caption...',
-                      labelText: _captionFocusNode.hasFocus ? 'Caption' : null,
-                      labelStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                      hintStyle: TextStyle(
-                        color: Colors.white54,
-                      ),
-                      suffixIcon: _captionController.text.isNotEmpty && _captionFocusNode.hasFocus
-                          ? IconButton(
-                              icon: Icon(
-                                Icons.clear_rounded,
-                                color: Colors.redAccent,
-                              ),
-                              onPressed: () {
-                                _captionController.clear();
-                              },
-                            )
-                          : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                          width: 1,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: AppColors.gradientPurple,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                  ),
+                  CaptionTextField(captionController: _captionController, captionFocusNode: _captionFocusNode),
                   const SizedBox(
                     height: 30,
                   ),

@@ -1,4 +1,4 @@
-import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/utils/colors.dart';
 import 'package:aperture/route_manager/app_router.dart';
 import 'package:flutter/material.dart';
 

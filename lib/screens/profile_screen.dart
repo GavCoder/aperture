@@ -1,4 +1,4 @@
-import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/utils/colors.dart';
 import 'package:aperture/widgets/app_button.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/profile_editing_widget.dart';

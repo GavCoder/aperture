@@ -1,6 +1,7 @@
 
-import 'package:aperture/miscellaneous/colors.dart';
+import 'package:aperture/utils/colors.dart';
 import 'package:aperture/widgets/blobs.dart';
+import 'package:aperture/widgets/popup_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -57,22 +58,23 @@ class FeedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    GestureDetector(
-                      onTap:
-                          () {}, // TODO: Implement profile page and navigation
-                      child: Image.asset(
-                        'assets/images/Logo.png',
-                        height: 30,
-                        width: 30,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Icon(
-                            Icons.camera_alt,
-                            color: AppColors.textWhite,
-                            size: 40,
-                          );
-                        },
-                      ),
-                    ),
+                    PopUpMenu(),
+                    // GestureDetector(
+                    //   onTap:
+                    //       () {}, // TODO: Implement profile page and navigation
+                    //   child: Image.asset(
+                    //     'assets/images/Logo.png',
+                    //     height: 30,
+                    //     width: 30,
+                    //     errorBuilder: (context, error, stackTrace) {
+                    //       return const Icon(
+                    //         Icons.camera_alt,
+                    //         color: AppColors.textWhite,
+                    //         size: 40,
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
