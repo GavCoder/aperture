@@ -1,6 +1,6 @@
 import 'package:aperture/utils/colors.dart';
 import 'package:aperture/providers/register_form_provider.dart';
-import 'package:aperture/widgets/app_button.dart';
+import 'package:aperture/widgets/app_button1.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/logo_section.dart';
 import 'package:aperture/widgets/tab_buttons.dart';
@@ -204,8 +204,8 @@ class _RegisterScreenViewState extends State<_RegisterScreenView> {
                         ),
                       ),
                       const SizedBox(height: 30),
-                      AppButton(
-                        btnText: const Text('Register'),
+                      AppButton1(
+                        btnText: 'Register',
                         onPressed: () {
                           if (_validateAllFields()) {
                             ScaffoldMessenger.of(context).showSnackBar(

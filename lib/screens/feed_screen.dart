@@ -29,8 +29,8 @@ class FeedScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                   top: 60,
                   left: 18,
                   right: 18,
@@ -38,7 +38,7 @@ class FeedScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text.rich(
+                    Text.rich(
                       TextSpan(
                         style: TextStyle(
                           fontSize: 28,
@@ -189,7 +189,7 @@ class FeedScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, '/addPost'),
                 backgroundColor: AppColors.gradientMediumPurple,
                 child: const Icon(
                   Icons.add_rounded,

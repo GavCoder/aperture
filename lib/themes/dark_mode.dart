@@ -8,3 +8,4 @@ ThemeData darkMode = ThemeData(
   ),
   scaffoldBackgroundColor: Colors.black,
 );
+

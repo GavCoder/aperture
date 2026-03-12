@@ -1,6 +1,6 @@
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
-import 'package:aperture/widgets/app_button.dart';
+import 'package:aperture/widgets/app_button1.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/forgot_password_button.dart';
 import 'package:aperture/widgets/logo_section.dart';
@@ -64,7 +64,9 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
   }
 
   void _validatePassword() {
-    context.read<LoginFormProvider>().validateLoginPassword(passwordController.text);
+    context
+        .read<LoginFormProvider>()
+        .validateLoginPassword(passwordController.text);
   }
 
   void _onLoginPressed() {
@@ -95,7 +97,9 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
           SafeArea(
             child: SingleChildScrollView(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height, // Find best responsiveness practices for this
+                height: MediaQuery.of(context)
+                    .size
+                    .height, // Find best responsiveness practices for this
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -120,12 +124,13 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                         prefixIcon: Icons.lock,
                         errorText: loginProvider.passwordError,
                         obscureText: loginProvider.obscurePassword,
-                        suffixIcon: TogglePasswordVisibility(loginProvider: loginProvider),
+                        suffixIcon: TogglePasswordVisibility(
+                            loginProvider: loginProvider),
                       ),
                       const ForgotPasswordButton(),
                       const SizedBox(height: 16),
-                      AppButton(
-                        btnText: const Text('Login'),
+                      AppButton1(
+                        btnText: 'Login',
                         onPressed: _onLoginPressed,
                       ),
                       const SizedBox(height: 30),
@@ -155,5 +160,3 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
     );
   }
 }
-
-
