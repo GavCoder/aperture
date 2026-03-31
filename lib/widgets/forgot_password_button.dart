@@ -1,3 +1,4 @@
+import 'package:aperture/route_manager/app_router.dart';
 import 'package:aperture/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {
-          // TODO: Implement forgot password functionality
-        },
+        onPressed: () => Navigator.pushNamed(context, AppRouter.forgotPasswordRoute), //TODO: implement forgot password funtionality
         child: const Text(
           'Forgot password',
           style: TextStyle(

@@ -28,6 +28,16 @@ class AppColors {
     Colors.black.withOpacity(0.8),    
   ];
 
+  // Login Button Background color gradient
+  static const Color loginButtonBackgroundColor = Color(0xFF634CA6);
+
+  // Save/Upload Button Backkground color gradient
+  static const List<Color> uploadButtonBackgroundColor = [
+    Color(0xFF5B5FCA),
+    Color(0xFF3E2FAE),
+    Color(0xFF3E2FAE),
+  ];
+
   // Icon Colors
   static const Color iconWhite = Colors.white;
   static const Color iconDarkGrey = Color(0xFF1F2937);
@@ -40,6 +50,10 @@ class AppColors {
   static const Color textWhite = Colors.white;
   static const Color textDarkGrey = Color.fromARGB(255, 41, 41, 41);
   static const Color textLightGrey = Color(0xFF6B7280);
+
+  // Button Border Color
+  static Color loginButtonBorderColor() => Colors.grey.shade500;
+  static Color uploadButtonBorderColor() => Colors.grey.shade600;
 
   // Transparent/Overlay Colors
   static const Color overlayDark = Color(0xFF000000);
@@ -56,7 +70,6 @@ class AppColors {
   // Button and Input Colors
   static Color inputFillColor = whiteWithOpacity(0.15);
   static Color inputBorderColor = whiteWithOpacity(0.9);
-  static Color buttonBackgroundColor = whiteWithOpacity(0.2);
   static Color hintTextColor = whiteWithOpacity(0.6);
   static Color tabBackgroundColor = whiteWithOpacity(0.25);
   static Color tabBackgroundInactiveColor = blackWithOpacity(0.3);

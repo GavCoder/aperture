@@ -1,6 +1,7 @@
 import 'package:aperture/providers/login_form_provider.dart';
 import 'package:aperture/route_manager/app_router.dart';
-import 'package:aperture/widgets/app_button.dart';
+import 'package:aperture/supabase/auth_services.dart';
+import 'package:aperture/widgets/app_button1.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/forgot_password_button.dart';
 import 'package:aperture/widgets/logo_section.dart';
@@ -64,7 +65,9 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
   }
 
   void _validatePassword() {
-    context.read<LoginFormProvider>().validateLoginPassword(passwordController.text);
+    context
+        .read<LoginFormProvider>()
+        .validateLoginPassword(passwordController.text);
   }
 
   void _onLoginPressed() {
@@ -78,6 +81,34 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
       Navigator.pushNamed(context, AppRouter.feedRoute);
     }
   }
+
+  void signInUser() async {
+  if (emailController.text.trim().isEmpty ||
+      passwordController.text.trim().isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Email and password are required')),
+    );
+    return; // ← stops execution if fields are empty
+  }
+
+  final res = await AuthService().signIn( // ← await added
+    emailController.text.trim(),
+    passwordController.text.trim(),
+  );
+
+  if (res == 'success') {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Sign In Successful')),
+    );
+    Navigator.of(context).pushNamed(AppRouter.feedRoute);
+  } else {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(res)), // show the actual error
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +126,9 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
           SafeArea(
             child: SingleChildScrollView(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height, // Find best responsiveness practices for this
+                height: MediaQuery.of(context)
+                    .size
+                    .height, // Find best responsiveness practices for this
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -120,13 +153,14 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
                         prefixIcon: Icons.lock,
                         errorText: loginProvider.passwordError,
                         obscureText: loginProvider.obscurePassword,
-                        suffixIcon: TogglePasswordVisibility(loginProvider: loginProvider),
+                        suffixIcon: TogglePasswordVisibility(
+                            loginProvider: loginProvider),
                       ),
                       const ForgotPasswordButton(),
                       const SizedBox(height: 16),
-                      AppButton(
-                        btnText: const Text('Login'),
-                        onPressed: _onLoginPressed,
+                      AppButton1(
+                        btnText: 'Login',
+                        onPressed: signInUser,//_onLoginPressed,
                       ),
                       const SizedBox(height: 30),
                       SocialLoginButton(
@@ -155,5 +189,3 @@ class _LoginScreenViewState extends State<_LoginScreenView> {
     );
   }
 }
-
-

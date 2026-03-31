@@ -1,4 +1,5 @@
 import 'package:aperture/route_manager/app_router.dart';
+import 'package:aperture/supabase/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class MenuItems extends StatelessWidget {
@@ -89,10 +90,26 @@ class MenuItems extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            trailing: Icon(
-              Icons.logout_rounded,
-              color: Colors.white,
-              size: 20,
+            trailing: IconButton(
+              icon: Icon(
+                Icons.logout_rounded,
+                color: Colors.white,
+                size: 20,
+              ),
+              onPressed: () async {
+                final res = await AuthService().signOut();
+
+                if (res == 'success') {
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRouter.loginRoute);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(res),
+                    ),
+                  );
+                }
+              },
             ),
           ),
         ),

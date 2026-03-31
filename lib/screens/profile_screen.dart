@@ -1,6 +1,7 @@
 import 'package:aperture/utils/colors.dart';
-import 'package:aperture/widgets/app_button.dart';
+import 'package:aperture/widgets/app_button2.dart';
 import 'package:aperture/widgets/blobs.dart';
+import 'package:aperture/widgets/header.dart';
 import 'package:aperture/widgets/profile_editing_widget.dart';
 import 'package:aperture/widgets/user_level_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,8 @@ class ProfileScreen extends StatelessWidget {
           const Blobs(
             blobPath: 'assets/blobs/blob2.svg',
             svgWidth: 490,
-            topPosition: 650,
-            leftPosition: -250,
+            bottomPosition: -340,
+            rightPosition: -200,
           ),
           SafeArea(
             child: SingleChildScrollView(
@@ -31,32 +32,8 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Cynthia',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.arrow_back_rounded,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ),
-                    ],
-                    alignment: Alignment.centerLeft,
+                  const Header(
+                    title: "Cynthia",
                   ),
                   const SizedBox(
                     height: 30,
@@ -105,30 +82,31 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   const ProfileEditingFields(
                     text:
-                        'This is the username. It can be edited by clicking the edit icon at the bottom right corner of this container.',
+                        'Cynthia',
                     heading: 'Username:',
                     toolTip: 'Edit Username',
                   ),
                   const SizedBox(height: 20),
                   const ProfileEditingFields(
                     text:
-                        'This is the email. It can be edited by clicking the edit icon at the bottom right corner of this container.',
+                        'cynthia@example.com',
                     heading: 'Email:',
                     toolTip: 'Edit Email',
                   ),
                   const SizedBox(height: 20),
                   const ProfileEditingFields(
                     text:
-                        'This is the password. It can be edited by clicking the edit icon at the bottom right corner of this container.',
+                        'K12461632&',
                     heading: 'Password:',
                     toolTip: 'Edit Password',
                   ),
                   const UserLevel(),
                   const SizedBox(height: 20),
-                  AppButton(
-                    btnColor: AppColors.gradientPurple,
-                    btnText: const Row(
+                  AppButton2(
+                    onPressed: () {},
+                    btnTitle: const Row(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.save_rounded,
@@ -145,7 +123,6 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onPressed: () {},
                   ),
                 ],
               ),

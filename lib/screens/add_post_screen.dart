@@ -1,9 +1,9 @@
 import 'package:aperture/utils/colors.dart';
-import 'package:aperture/widgets/app_button.dart';
+import 'package:aperture/widgets/app_button2.dart';
 import 'package:aperture/widgets/blobs.dart';
 import 'package:aperture/widgets/caption_textfield.dart';
+import 'package:aperture/widgets/header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({super.key});
@@ -13,8 +13,8 @@ class AddPostScreen extends StatefulWidget {
 }
 
 class _AddPostScreenState extends State<AddPostScreen> {
-  TextEditingController _captionController = TextEditingController();
-  FocusNode _captionFocusNode = FocusNode();
+  final TextEditingController _captionController = TextEditingController();
+  final FocusNode _captionFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -36,56 +36,23 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     //TODO: Clean up the code and make it more modular by creating separate widgets for the post image, caption input, and upload button. Also, add functionality to actually upload the post and handle errors appropriately.
     return Scaffold(
       body: Stack(
         children: [
           const Blobs(
-            blobPath: 'assets/blobs/blob3.svg',
-            svgWidth: 490,
-            topPosition: -100,
-            leftPosition: -50,
-          ),
-          const Blobs(
-            blobPath: 'assets/blobs/blob1.svg',
-            svgWidth: 490,
-            topPosition: 800,
-            leftPosition: 50,
+            blobPath: 'assets/blobs/blob4.svg',
+            svgWidth: 1300,
+            topPosition: -420,
+            leftPosition: -550,
           ),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Make A Post',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.arrow_back_rounded,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                    ],
-                    alignment: Alignment.centerLeft,
+                  const Header(
+                    title: 'Make A Post',
                   ),
                   const SizedBox(
                     height: 30,
@@ -114,7 +81,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                           ),
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.add,
                             color: AppColors.overlayDark,
@@ -124,22 +91,24 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  CaptionTextField(captionController: _captionController, captionFocusNode: _captionFocusNode),
+                  CaptionTextField(
+                      captionController: _captionController,
+                      captionFocusNode: _captionFocusNode),
                   const SizedBox(
                     height: 30,
                   ),
-                  AppButton(
-                    btnText: Row(
+                  AppButton2(
+                    btnTitle: const Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.file_upload_rounded,
                           color: Colors.white,
-                          size: 20,
+                          size: 25,
                         ),
                         SizedBox(
                           width: 10,
@@ -153,7 +122,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         ),
                       ],
                     ),
-                    btnColor: Colors.deepPurple,//AppColors.gradientPurple,
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
